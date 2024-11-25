@@ -7,11 +7,21 @@ public class frameDivisi extends javax.swing.JFrame {
     private configDB crud; // Nama object secara global dari configDB
     private String[] fieldSimpan = {"id","kode","nama","kepala_divisi","kontak"};
     private String[] fieldEdit = {"kode","nama","kepala_divisi","kontak"};
+    private String[] JudulKolom = {"ID","Kode","Nama","Kepala Divisi","Kontak"};
+    private int[] LebarKolom = {50,50,150,100,100};
+    private String SQL = "SELECT * FROM divisi";
+    
+    private void refreshDivisi(){
+        crud.settingJudulTabel(TableDivisi, JudulKolom);
+        crud.tampilTabel(TableDivisi, SQL, JudulKolom);
+        crud.settingLebarKolom(TableDivisi, LebarKolom);
+    }
     
     public frameDivisi() {
         initComponents();
         this.setLocationRelativeTo(null);
         crud = new configDB();
+        refreshDivisi();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +41,8 @@ public class frameDivisi extends javax.swing.JFrame {
         BSIMPAN = new javax.swing.JButton();
         BUBAH = new javax.swing.JButton();
         BHAPUS = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableDivisi = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,32 +107,51 @@ public class frameDivisi extends javax.swing.JFrame {
             }
         });
 
+        TableDivisi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TableDivisi);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BSIMPAN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BUBAH)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BHAPUS))
-                    .addComponent(D_KODE)
-                    .addComponent(D_NAMA)
-                    .addComponent(D_KDIVISI)
-                    .addComponent(D_KONTAK)
-                    .addComponent(D_ID))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(D_KDIVISI)
+                            .addComponent(D_KONTAK)
+                            .addComponent(D_KODE)
+                            .addComponent(D_NAMA)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(D_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BSIMPAN, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(BUBAH, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BHAPUS, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,8 +179,11 @@ public class frameDivisi extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BSIMPAN)
-                    .addComponent(BUBAH)
-                    .addComponent(BHAPUS))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BHAPUS)
+                        .addComponent(BUBAH)))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -184,6 +218,7 @@ public class frameDivisi extends javax.swing.JFrame {
                 String[] isiField = {D_ID.getText(),D_KODE.getText(),D_NAMA.getText(),D_KDIVISI.getText(),D_KONTAK.getText()};
                 crud.SimpanDinamis("divisi", fieldSimpan, isiField);
             }
+            refreshDivisi();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -193,6 +228,7 @@ public class frameDivisi extends javax.swing.JFrame {
         try {
             String[] valueField = {D_KODE.getText(),D_NAMA.getText(),D_KDIVISI.getText(),D_KONTAK.getText()};
             crud.UbahDinamis("divisi", "id", D_ID.getText(), fieldEdit, valueField);
+            refreshDivisi();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -201,6 +237,7 @@ public class frameDivisi extends javax.swing.JFrame {
     private void BHAPUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BHAPUSActionPerformed
         try {
             crud.HapusDinamis("divisi", "id", D_ID.getText());
+            refreshDivisi();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -225,10 +262,12 @@ public class frameDivisi extends javax.swing.JFrame {
     private javax.swing.JTextField D_KODE;
     private javax.swing.JTextField D_KONTAK;
     private javax.swing.JTextField D_NAMA;
+    private javax.swing.JTable TableDivisi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

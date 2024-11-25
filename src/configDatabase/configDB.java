@@ -174,6 +174,63 @@ public class configDB {
             System.out.println(e.toString());
         }
     }
+    
+    public void settingJudulTabel(JTable Tabelnya, String[] JudulKolom){
+        try {
+            Modelnya = new DefaultTableModel();
+            Tabelnya.setModel(Modelnya);
+            for (int i = 0; i < JudulKolom.length; i++) {
+                Modelnya.addColumn(JudulKolom[i]);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    public void settingLebarKolom(JTable Tabelnya,int[] Kolom){
+        try {
+            Tabelnya.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            for (int i = 0; i < Kolom.length; i++) {
+            Kolomnya = Tabelnya.getColumnModel().getColumn(i);
+            Kolomnya.setPreferredWidth(Kolom[i]);   
+            }      
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    public Object[][] isiTabel(String SQL, int jumlah){
+        Object[][] data =null;
+        try {
+            Statement perintah = getKoneksi().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                ResultSet.CONCUR_READ_ONLY);
+            ResultSet dataset = perintah.executeQuery(SQL);
+            dataset.last();
+            int baris = dataset.getRow();
+            dataset.beforeFirst();
+            int j =0;
+         
+            data = new Object[baris][jumlah];
+         
+            while (dataset.next()){
+            for (int i = 0; i < jumlah; i++) {
+                data[j][i]=dataset.getString(i+1);
+            }
+            j++;
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+      return data;
+    }
+    
+    public void tampilTabel(JTable Tabelnya, String SQL, String[] Judul){
+        try {
+            Tabelnya.setModel(new DefaultTableModel(isiTabel(SQL,Judul.length), Judul));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
 
 
     
