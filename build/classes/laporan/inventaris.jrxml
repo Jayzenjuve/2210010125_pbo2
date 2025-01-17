@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="312f3c83-95ab-42b7-b45e-901c845f5c11">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="8"/>
+	<queryString language="SQL">
+		<![CDATA[select * from inventaris]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kode" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="merk" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_kategori" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unit_bebas" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unit_total" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="109" y="0" width="336" height="32" uuid="f72cfa45-5dd3-4696-8284-4a344e5ece8d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN DATA INVENTARIS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="0" width="28" height="20" uuid="92335eb6-5701-4a1a-a13a-b6109a7cb8bd"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="0" width="45" height="20" uuid="8646717a-881c-4e56-97f5-699e9b19fdc6"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="0" width="64" height="20" uuid="6ef8273b-bef3-47a5-9d96-1efd2b59936a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="0" width="100" height="20" uuid="95a3b452-bfe1-4c97-b9a0-8a7689792785"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Merk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="0" width="30" height="20" uuid="b7089a14-e75a-43f1-ac92-f61bf132c122"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID-K]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="0" width="77" height="20" uuid="5ba9a8e4-f042-4d3b-bc79-c4b73b15d558"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Bebas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="49" height="20" uuid="bb901839-60d2-48fe-ada0-7d449b90a759"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="404" y="0" width="142" height="20" uuid="65a36238-596b-436e-99e2-68c03d2a43b5"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Keterangan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="0" width="28" height="20" uuid="b2ad4f98-991c-4039-93a1-be0ad2d834b3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="39" y="0" width="45" height="20" uuid="02e7b2b5-cfff-4ce3-8ab8-a75589a4e9cf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{kode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="0" width="64" height="20" uuid="209d4856-fd10-433f-b57d-0be912084707"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{jenis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="0" width="100" height="20" uuid="4f006bd6-7905-4cec-b34f-d268e18a859c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{merk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="0" width="30" height="20" uuid="ff0ba50b-33d5-481b-bd93-f71cec460b84"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{id_kategori}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="77" height="20" uuid="42d93b85-12b3-47fb-80ab-790d89d5fd0b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{unit_bebas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="49" height="20" uuid="857e81d4-7b2c-4375-862e-44778566eb34"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{unit_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="5" width="142" height="20" uuid="85618780-fa4a-4d1d-b213-6b7c0fa31a31"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
