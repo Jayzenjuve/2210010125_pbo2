@@ -1,5 +1,17 @@
 package configDatabase;
 
+import java.io.File;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -11,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
+import java.util.logging.*;
 
 public class configDB {
 
@@ -232,6 +245,23 @@ public class configDB {
         }
     }
 
+    public void tampilLaporan(String laporanFile, String SQL) throws SQLException{
+      try {
+          File file = new File(laporanFile);
+          JasperDesign jasDes = JRXmlLoader.load(file);
+
+           JRDesignQuery sqlQuery = new JRDesignQuery();
+           sqlQuery.setText(SQL);
+           jasDes.setQuery(sqlQuery);
+
+           JasperReport JR = JasperCompileManager.compileReport(jasDes);
+           JasperPrint JP = JasperFillManager.fillReport(JR,null,getKoneksi()); 
+           JasperViewer.viewReport(JP,false);
+         } catch (JRException e) {
+            JOptionPane.showMessageDialog(null,e.toString());       
+
+         }
+    }
 
     
 }
